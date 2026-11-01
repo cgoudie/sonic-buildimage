@@ -7,18 +7,6 @@ module sonic-mld-snooping {
 		prefix inet;
 	}
 
-	import sonic-port {
-		prefix prt;
-	}
-
-    import sonic-portchannel {
-		prefix lag;
-	}
-
-	import sonic-vlan {
-        prefix svlan;
-    }
-
 	organization
 		"SONIC";
 
@@ -41,9 +29,7 @@ module sonic-mld-snooping {
 				key "vlan-name group-addr";
 
 				leaf vlan-name {
-					type leafref {
-                        path "/svlan:sonic-vlan/svlan:VLAN/svlan:VLAN_LIST/svlan:name";
-                    }
+					type string;
 				}
 
 				leaf group-addr {
@@ -51,14 +37,7 @@ module sonic-mld-snooping {
 				}
 
 				leaf-list static-members {
-					type union {
-                        type leafref {
-                            path "/prt:sonic-port/prt:PORT/prt:PORT_LIST/prt:name";
-                        }
-                        type leafref {
-                            path "/lag:sonic-portchannel/lag:PORTCHANNEL/lag:PORTCHANNEL_LIST/lag:name";
-                        }
-                    }
+					type string;
 					description "List of interfaces/portchannels for the multicast group.";
 				}
 			}			
@@ -71,9 +50,7 @@ module sonic-mld-snooping {
 				key "vlan-name group-addr out-intf";
 
 				leaf vlan-name {
-					type leafref {
-                        path "/svlan:sonic-vlan/svlan:VLAN/svlan:VLAN_LIST/svlan:name";
-                    }	
+					type string;	
 				}
 
 				leaf group-addr {
@@ -81,24 +58,10 @@ module sonic-mld-snooping {
 				}
 
 				leaf out-intf {
-					type union {
-                        type leafref {
-                            path "/prt:sonic-port/prt:PORT/prt:PORT_LIST/prt:name";
-                        }
-                        type leafref {
-                            path "/lag:sonic-portchannel/lag:PORTCHANNEL/lag:PORTCHANNEL_LIST/lag:name";
-                        }
-                    }
+					type string;
 				}
 				leaf port {
-					type union {
-                        type leafref {
-                            path "/prt:sonic-port/prt:PORT/prt:PORT_LIST/prt:name";
-                        }
-                        type leafref {
-                            path "/lag:sonic-portchannel/lag:PORTCHANNEL/lag:PORTCHANNEL_LIST/lag:name";
-                        }
-                    }
+					type string;
 				}			
 			}
 		}
@@ -110,31 +73,15 @@ module sonic-mld-snooping {
 				key "vlan-name mrouter-intf";
 
 				leaf vlan-name {
-					type leafref {
-                        path "/svlan:sonic-vlan/svlan:VLAN/svlan:VLAN_LIST/svlan:name";
-                    }
+					type string;
 				}
 
 				leaf mrouter-intf {
-					type union {
-                        type leafref {
-                            path "/prt:sonic-port/prt:PORT/prt:PORT_LIST/prt:name";
-                        }
-                        type leafref {
-                            path "/lag:sonic-portchannel/lag:PORTCHANNEL/lag:PORTCHANNEL_LIST/lag:name";
-                        }
-                    }
+					type string;
 				}
 
 				leaf mrouter_port {
-					type union {
-                        type leafref {
-                            path "/prt:sonic-port/prt:PORT/prt:PORT_LIST/prt:name";
-                        }
-                        type leafref {
-                            path "/lag:sonic-portchannel/lag:PORTCHANNEL/lag:PORTCHANNEL_LIST/lag:name";
-                        }
-                    }
+					type string;
 				}			
 			}		
 		}
@@ -145,9 +92,7 @@ module sonic-mld-snooping {
 				key "vlan-name";
 
 				leaf vlan-name {
-					type leafref {
-                        path "/svlan:sonic-vlan/svlan:VLAN/svlan:VLAN_LIST/svlan:name";
-                    }
+					type string;
 				} 
 
 				leaf enabled {
